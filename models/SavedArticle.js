@@ -14,8 +14,12 @@ const schema = new Schema({
     link: {
         type: String,
         required: true
-    }
+    },
+    note: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note"
+    }]
 
 });
 
-module.exports = mongoose.model("Article", schema);
+module.exports = mongoose.model("SavedArticle", schema);

@@ -1,1 +1,59 @@
-{{content}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Mongo Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="savedArticles">Saved Articles</a>
+            </li>
+            <li><button class="btn btn-outline-danger my-2 my-sm-0 scrapeBtn">Scrape New Articles!</button></li>
+            <li><button class="btn btn-outline-danger my-2 my-sm-0" id="clearBtn">Clear Articles!</button></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="text-center">
+        <h1>Mongo Scraper</h1>
+        <h4> New York Times Edition</h4>
+    </div>
+</div>
+<div class="message text-center">
+    {{#unless articles}}
+    <h4 class="text-center">Looks like you don't have any articles</h4>
+    <div class="options">
+        <h4 class="title">What would you like to do?</h4>
+        <div class="body">
+            <button class="btn btn-secondary scrapeBtn">Try Scraping New Articles</button>
+            <a href="/savedArticles"><button class="btn btn-secondary">Go to Saved Articles</button></a>
+        </div>
+    </div>
+
+    {{/unless}}
+</div>
+<ul class="articles">
+
+    {{#each articles}}
+    <li>
+        <div class="article" articleId="{{id}}">
+            <div>
+                <a href="{{link}}" class="link title">
+                    {{title}}
+                </a>
+                <button class="saveBtn btn-success">Save Article</button>
+            </div>
+            <p class="body">{{body}}</p>
+        </div>
+    </li>
+    {{/each}}
+
+</ul>
+
+<script src="js/home.js"></script>

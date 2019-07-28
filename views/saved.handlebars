@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Mongo Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="savedArticles">Saved Articles</a>
+            </li>
+            <li><button class="btn btn-outline-danger my-2 my-sm-0" id="clearSavedBtn">Clear Saved Articles!</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron">
+    <div class="text-center">
+        <h1>Saved Articles</h1>
+        <h4>Your Saved Articles</h4>
+    </div>
+</div>
+<div class="message text-center">
+    {{#unless articles}}
+    <h4 class="text-center">Looks like you haven't saved any articles</h4>
+    <div class="options">
+        <h4 class="title">What would you like to do?</h4>
+        <div class="body">
+            <a href="/"><button class="btn btn-secondary">Browse Articles</button></a>
+        </div>
+    </div>
+
+    {{/unless}}
+</div>
+
+
+<ul class="articles">
+
+    {{#each articles}}
+    <li>
+        <div class="article" articleId="{{id}}">
+            <div>
+                <a href="{{link}}" class="link title">
+                    {{title}}
+                </a>
+                <button class="deleteSavedBtn btn-success">Delete from Saved</button>
+                <button class="notesBtn btn-success">Article Notes</button>
+            </div>
+            <p class="body">{{body}}</p>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+
+
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noteModalLabel">Notes For Article: <span class="savedNoteTitle"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul id="notes">
+
+                </ul>
+                <form>
+                    <div class="form-group">
+                        <label for="newNote" class="col-form-label">New Note</label>
+                        <input type="text" class="form-control" id="newNote">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-secondary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/saved.js"></script>
