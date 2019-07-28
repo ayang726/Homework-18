@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 var logger = require("morgan");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
